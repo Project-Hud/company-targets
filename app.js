@@ -27,6 +27,14 @@ if ('development' === app.get('env')) {
   app.use(express.errorHandler())
 }
 
+getSpreadsheet(function (error, spreadsheet) {
+  if (error) {
+    console.error(error)
+  }
+
+  console.log(processSpreadsheet(spreadsheet))
+})
+
 app.get('/', function (req, res) {
   getSpreadsheet(function (error, spreadsheet) {
     if (error) {
