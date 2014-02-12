@@ -42,6 +42,7 @@ block content
     //-       p Is this quarter over? #{quarter.passed}
   section.section__panel
     section.quarterTarget
+      .quarterTarget-countdown(data-target=targets.formatTargetInt, data-earnt=targets.formatEarntInt)
       section.quarterTarget__info
         span.quarterTarget__info--blockLeft TARGET: £#{targets.formatTarget}
         span.quarterTarget__info--blockRight EARNT: £#{targets.formatEarnt}
