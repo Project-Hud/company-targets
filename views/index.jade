@@ -2,18 +2,50 @@ extends layout
 
 block content
   span(data-targets=JSON.stringify(targets))
-  h1=targets.formatTarget
-  h1 Company target
-  h1=targets.formatEarnt
-  h1 Company actual
+  section.section__panel
+    section.companyTarget
+      - var percentClass = ((targets.formatEarntInt / targets.formatTargetInt * 100) < 100 ? 'percent--warning' : 'percent--good')
+      span.percent(style="height:#{targets.formatEarntInt / targets.formatTargetInt * 100}%", class=percentClass)
+      h1.companyTarget__title
+        span.companyTarget__value=targets.formatTarget
+        span.companyTarget__title--medium Company
+        span.companyTarget__title--large Target
+    section.quarters
+      ul
+        each quarter in targets.quarters
+            if quarter.met
+              li.quarters__quarter--met
+                span.quarter__title #{quarter.title}
+                .icon.icon--success.icon--verySmall
+                  svg(version='1.1', xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://www.w3.org/1999/xlink', x='0px', y='0px', width='100px', height='90px', viewbox='0 0 445 397', style='enable-background: new 0 0 445 397;', xml:space='preserve')
+                    path(style='fill: none; stroke-width: 80; stroke-miterlimit: 10;', d='M27.495,222.246c0,0,57,50,97.098,103c0,0,144.41-183.505,292.902-293')
+            else
+              if quarter.passed
+                li.quarters__quarter--notMet
+                  span.quarter__title #{quarter.title}
+                  .icon.icon--danger.icon--verySmall
+                    svg(version='1.1', xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://www.w3.org/1999/xlink', x='0px', y='0px', width='445px', height='397px', viewbox='0 0 445 397', style='enable-background: new 0 0 445 397;', xml:space='preserve')
+                      g
+                        path(style='fill: none; stroke-width: 80; stroke-miterlimit: 10;', d='M73.669,347.98c0,0,144.41-183.505,292.902-293')
+                        path(style='fill: none; stroke-width: 80; stroke-miterlimit: 10;', d='M366.249,349.129c0,0-143.386-184.308-291.266-294.629')
+              else
+                li.quarters__quarter--current
+                  span.quarter__title #{quarter.title}
 
-  ul
-    each quarter in targets.quarters
-      li
-        p=quarter.title
-        p Quarter target: #{quarter.target}
-        p Quarter actual: #{quarter.earnt}
-        p Has this quarter been met? #{quarter.met}
-        p Is this quarter over? #{quarter.passed}
+    //- ul
+    //-   each quarter in targets.quarters
+    //-     li
+    //-       p=quarter.title
+    //-       p Quarter target: #{quarter.target}
+    //-       p Quarter actual: #{quarter.earnt}
+    //-       p Has this quarter been met? #{quarter.met}
+    //-       p Is this quarter over? #{quarter.passed}
+  section.section__panel
+    section.quarterTarget
+      section.quarterTarget__info
+        span.quarterTarget__info--blockLeft TARGET: £#{targets.formatTarget}
+        span.quarterTarget__info--blockRight EARNT: £#{targets.formatEarnt}
 
+  script(src='//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js')
+  script(src='http://d3js.org/d3.v3.min.js')
   script(src='/javascripts/index.js')
