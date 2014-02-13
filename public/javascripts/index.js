@@ -5,6 +5,7 @@
     , height = $data.height()
     , target = $data.attr('data-target')
     , earnt = $data.attr('data-earnt')
+    , quarter = parseInt($data.attr('data-currentQuarter')) + 1
 
   var percent = earnt / target
     , radianAngle = -((twoPi * percent))
@@ -17,6 +18,8 @@
 
   var meter = svg.append('g').attr('class', 'progress-meter')
   meter.append('path').attr('class', 'background').attr('d', arcBackground.endAngle(twoPi))
+
+  var $currentQuarter = meter.append('text').text('Q'+ quarter).attr('transform', 'translate(0,0)').attr('class', 'text').attr("text-anchor", "middle").attr("dy", 21)
 
   var $progress = meter.append('path').attr('class', 'foreground '+ extraClass)
 

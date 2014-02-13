@@ -42,10 +42,10 @@ block content
     //-       p Is this quarter over? #{quarter.passed}
   section.section__panel
     section.quarterTarget
-      .quarterTarget-countdown(data-target=targets.formatTargetInt, data-earnt=targets.formatEarntInt)
+      .quarterTarget-countdown(data-currentQuarter=targets.currentQuarter, data-target=targets.quarters[targets.currentQuarter].target, data-earnt=targets.quarters[targets.currentQuarter].earnt)
       section.quarterTarget__info
-        span.quarterTarget__info--blockLeft TARGET: £#{targets.formatTarget}
-        span.quarterTarget__info--blockRight EARNT: £#{targets.formatEarnt}
+        span.quarterTarget__info--blockLeft TARGET: £#{targets.quarters[targets.currentQuarter].targetFormat}
+        span.quarterTarget__info--blockRight EARNT: £#{targets.quarters[targets.currentQuarter].earntFormat}
 
   script(src='//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js')
   script(src='http://d3js.org/d3.v3.min.js')

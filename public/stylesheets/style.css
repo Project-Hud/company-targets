@@ -290,3 +290,9 @@ li {
 .quarterTarget-countdown .progress-meter .foreground--good {
   fill: #34a802;
 }
+
+.quarterTarget-countdown .progress-meter .text {
+  fill: #FFF;
+  font-size: 98px;
+  text-align: right;
+}

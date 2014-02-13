@@ -6,6 +6,7 @@
 var express = require('express')
   , http = require('http')
   , path = require('path')
+  , _ = require('lodash')
   , getSpreadsheet = require('./lib/get-spreadsheet')
   , processSpreadsheet = require('./lib/process-spreadsheet')
   , app = express()
